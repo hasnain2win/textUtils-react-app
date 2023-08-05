@@ -61,7 +61,11 @@ function App() {
               }
             />
 
-            <Route exact path="/services" element={<Services />} />
+            <Route
+              exact
+              path="/services"
+              element={<Services mode={mode} showAlert={showAlert} />}
+            />
             <Route
               exact
               path="/about"

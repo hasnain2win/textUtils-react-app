@@ -67,10 +67,12 @@ export default function TextForm(props) {
   const encodeText = () => {
     let encodedText = encodeURIComponent(text);
     setText(encodedText);
+    props.showAlert("Text encoded successfully", "success");
   };
   const deCodeText = () => {
     let decodedText = decodeURIComponent(text);
     setText(decodedText);
+    props.showAlert("Text decoded successfully", "success");
   };
 
   return (
