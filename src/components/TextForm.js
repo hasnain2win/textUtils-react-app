@@ -58,6 +58,15 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
+  const encodeText = () => {
+    let encodedText = encodeURIComponent(text);
+    setText(encodedText);
+  };
+  const deCodeText = () => {
+    let decodedText = decodeURIComponent(text);
+    setText(decodedText);
+  };
+
   return (
     <>
       <div className="container">
@@ -65,11 +74,11 @@ export default function TextForm(props) {
           className="mb-3"
           style={{ color: props.mode === "dark" ? "white" : "black" }}
         >
-          <h2>{props.heading}</h2>
+          <h2 className="mb-3">{props.heading}</h2>
           <textarea
             className="form-control"
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor: props.mode === "dark" ? "#080e23" : "white",
               color: props.mode === "dark" ? "white" : "black",
             }}
             value={text}
@@ -79,30 +88,58 @@ export default function TextForm(props) {
           ></textarea>
         </div>
 
-        <button className="btn btn-success mx-1" onClick={handleUpClick}>
+        <button
+          className="btn btn-success mx-1 my-1 "
+          disabled={text.length === 0}
+          onClick={handleUpClick}
+        >
           ToUpperCase
         </button>
-        <button className="btn btn-success mx-1" onClick={handleLoClick}>
-          ToLocaleLowerCase
+        <button
+          className="btn btn-success mx-1  my-1"
+          disabled={text.length === 0}
+          onClick={handleLoClick}
+        >
+          ToLowerCase
         </button>
-        <button className="btn btn-success mx-1" onClick={handleExtraSpace}>
+        <button
+          className="btn btn-success mx-1 my-1"
+          disabled={text.length === 0}
+          onClick={handleExtraSpace}
+        >
           RemoveExtraSpace
         </button>
-
-        <button className="btn btn-success mx-1" onClick={handleClearText}>
+        <button
+          className="btn btn-success mx-1 my-1"
+          disabled={text.length === 0}
+          onClick={encodeText}
+        >
+          EncodeText
+        </button>
+        <button
+          className="btn btn-success mx-1 my-1"
+          disabled={text.length === 0}
+          onClick={deCodeText}
+        >
+          DecodeText
+        </button>
+        <button
+          className="btn btn-success mx-1 my-1"
+          disabled={text.length === 0}
+          onClick={handleClearText}
+        >
           ClearText
         </button>
         <button
           className="btn btn-success mx-1"
-          onClick={capitalizeFirstLetter}
+          disabled={text.length === 0}
+          onClick={downloadTxtFile}
         >
-          capitalizeFirstLetter
-        </button>
-        <button className="btn btn-success mx-1" onClick={downloadTxtFile}>
-          DownloadTxtFile
+          DownloadFile
         </button>
         <button
           className="btn btn-success mx-1"
+          disabled={text.length === 0}
           onClick={() => {
             navigator.clipboard.writeText(text);
             props.showAlert("copied to clipboard", "success");
@@ -118,16 +155,30 @@ export default function TextForm(props) {
       >
         <h2>Your text Summary</h2>
         <p>
-          Total Words : <b>{text.split(" ").length}</b>{" "}
+          Total Words :{" "}
+          <b>
+            {
+              text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length
+            }
+          </b>{" "}
         </p>
         <p>
           Total Characters: <b>{text.length}</b>
         </p>
         <p>
-          Time to read: <b>{0.008 * text.split(" ").length}-minutes </b>
+          Time to read:{" "}
+          <b>
+            {0.008 *
+              text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length}
+            -minutes{" "}
+          </b>
         </p>
         <h2>preview</h2>
-        <p>{text.length > 0 ? text : "Enter somthing above to preview here"}</p>
+        <p>{text.length > 0 ? text : "Nothing to preview"}</p>
       </div>
     </>
   );

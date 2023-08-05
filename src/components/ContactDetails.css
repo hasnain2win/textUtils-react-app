@@ -1,0 +1,33 @@
+.contact-container {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.contact-item {
+  margin-bottom: 10px;
+}
+
+.contact-label {
+  font-weight: bold;
+}
+
+/* Additional styling for making it more visually appealing */
+.contact-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.contact-container span {
+  display: block;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Add more styles as per your design preferences */

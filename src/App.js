@@ -1,11 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
@@ -33,12 +27,12 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#080e23";
       showAlert("Dark Mode has been Enabled", "success");
-      document.title = "Textutils - DarkMode";
+      // document.title = "Textutils - DarkMode";
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("Light Mode has been Enabled", "success");
-      document.title = "Textutils - LightMode";
+      // document.title = "Textutils - LightMode";
     }
   };
 
@@ -50,16 +44,17 @@ function App() {
           aboutText="About"
           mode={mode}
           toggleMode={toggleMode}
-        />{" "}
-        <br />
-        <Alert alert={alert} />
+        />
+        <div style={{ height: "50px" }}>
+          <Alert alert={alert} />
+        </div>
         <div className="container">
           <Routes>
             <Route
               path="/"
               element={
                 <TextForm
-                  heading="Enter the text to Analyze"
+                  heading="Try Textutils - word counter, character counter, remove extra spaces "
                   mode={mode}
                   showAlert={showAlert}
                 />
