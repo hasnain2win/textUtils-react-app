@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function TextForm(props) {
   const [text, setText] = useState("");
+
+  const handleCleanText = () => {
+    const cleanedText = text.replace(/[^a-zA-Z\s]/g, "");
+    setText(cleanedText);
+  };
 
   const getFileName = () => {
     let d = new Date();
@@ -112,6 +118,13 @@ export default function TextForm(props) {
         <button
           className="btn btn-success mx-1 my-1"
           disabled={text.length === 0}
+          onClick={handleCleanText}
+        >
+          CleanText
+        </button>
+        <button
+          className="btn btn-success mx-1 my-1"
+          disabled={text.length === 0}
           onClick={encodeText}
         >
           EncodeText
@@ -158,7 +171,7 @@ export default function TextForm(props) {
           Total Words :{" "}
           <b>
             {
-              text.split(" ").filter((element) => {
+              text.split(/\s+/).filter((element) => {
                 return element.length !== 0;
               }).length
             }
@@ -171,7 +184,7 @@ export default function TextForm(props) {
           Time to read:{" "}
           <b>
             {0.008 *
-              text.split(" ").filter((element) => {
+              text.split(/\s+/).filter((element) => {
                 return element.length !== 0;
               }).length}
             -minutes{" "}
